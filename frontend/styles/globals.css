@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow&family=PT+Sans&family=Poppins&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* > * {
+  font-family: "Poppins", sans-serif;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: white;
+  }
+}
