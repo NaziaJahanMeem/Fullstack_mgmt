@@ -21,11 +21,15 @@ const RootQuery = new GraphQLObjectType({
                 return User.find();
             },
         },
-        user:{
-            type: UserType,
-            args:{id:{type:GraphQLID}},
-            resolve(parent,args){
-                return User.findById(args.id);
+        user: {
+            type: new GraphQLList( UserType),
+            args: { name: { type: GraphQLString } },
+            resolve(parent, args) {
+                
+              return User.find(
+                { $text: { $search:args.name} },
+                { score: { $meta: "textScore" } }
+              ).sort({ score: { $meta: "textScore" } });
             },
         },
     },

@@ -34,4 +34,17 @@ const DELETE_USER=gql`
         }
     }
 `;
-export { ADD_USER,DELETE_USER,UPDATE_USER };
+const USERQUERY = gql`
+  query user($name: String!) {
+    user(name: $name) {
+      id
+      name
+      email
+      phone
+      gender
+      image
+    }
+  }
+`;
+export { ADD_USER, DELETE_USER, UPDATE_USER, USERQUERY };
+

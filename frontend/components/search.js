@@ -1,16 +1,19 @@
-import { useQuery } from "@apollo/client";
-import { useState } from "react";
+import { useMutation, useState } from "react";
+import { USER } from './mutations';
 import { GET_USERS } from "./queries";
 export default function Search(){
     const [filteredData,setFilteredData] = useState([]);
+    const [user]=useMutation(USER,{
+        
+        variables:{name:searchWord},
+        refetchQueries:[{query:GET_USERS}],
+        
+    })
     const handleFilter=(e)=>{
         const searchWord = e.target.value
-        const newFilter= data.users.filter((value)=>{
-            return (value.name.toLowerCase().includes(searchWord.toLowerCase()) || value.gender.toLowerCase().includes(searchWord.toLowerCase()))
-        });
-        setFilteredData(newFilter)
+        user(searchWord);
     }
-    const {loading,error,data}=useQuery(GET_USERS)
+    
     return (
         <>
         <div className='ml-auto w-4/6 scrollbar-hide mt-6'>   
